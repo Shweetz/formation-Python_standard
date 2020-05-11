@@ -7,8 +7,8 @@ def display_episodes(show):
     :param show: une série sous forme d'objet
     """
     print(f"{show.name}")
-    if show.episodes:
-        for episode in show.episodes:
+    if show._episodes:
+        for episode in show._episodes:
             if hasattr(episode, "title"):
                 print(f" - {episode.title} e{episode.number}s{episode.season_number}")
             else:

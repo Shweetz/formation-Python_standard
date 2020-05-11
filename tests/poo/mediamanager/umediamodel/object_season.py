@@ -34,24 +34,24 @@ class AccessEpisodes(unittest.TestCase):
 
     def test_new_season_have_no_episode(self):
         season = mediamodel.Season(None)
-        self.assertEqual(len(season.episodes), 0)
+        self.assertEqual(len(season._episodes), 0)
 
     def test_should_not_alter_episodes(self):
         season = mediamodel.Season(1)
         season.add(mediamodel.Episode("First Episode", 1, 1))
         season.add(mediamodel.Episode("Second Episode", 2, 1))
-        self.assertEqual(len(season.episodes), 2)
+        self.assertEqual(len(season._episodes), 2)
 
-        episodes = season.episodes
+        episodes = season._episodes
         episodes.append(mediamodel.Episode("Intruder", 3, 1))
-        self.assertEqual(len(season.episodes), 2)
+        self.assertEqual(len(season._episodes), 2)
 
     def test_episodes_are_ordered(self):
         season = mediamodel.Season(1)
         season.add(mediamodel.Episode("Second Episode", 2, 1))
         season.add(mediamodel.Episode("First Episode", 1, 1))
 
-        episodes = season.episodes
+        episodes = season._episodes
         self.assertEqual(episodes[0].number, 1)
         self.assertEqual(episodes[1].number, 2)
 

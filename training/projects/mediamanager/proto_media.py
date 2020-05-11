@@ -13,7 +13,7 @@ def proto_init_tvshow(self, name):
     :param name: nom du show
     """
     self._name = name
-    self.episodes = []
+    self._episodes = []
 
 
 def proto_add_episode_tvshow(self, title):
@@ -22,10 +22,10 @@ def proto_add_episode_tvshow(self, title):
     :param self: pour l'instance de classe
     :param title: titre de l'épisode à ajouter
     """
-    if title in self.episodes:
+    if title in self._episodes:
         raise ValueError('Duplicate episode')
 
-    self.episodes.append(title)
+    self._episodes.append(title)
 
 
 def name_fget(self):
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     print(type(t))
     t.add_episode('Test episode')
     t.add_episode('Another test episode')
-    print(t.episodes)
+    print(t._episodes)
     print(t.name)

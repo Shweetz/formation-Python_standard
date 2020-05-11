@@ -12,6 +12,7 @@ place.
 """
 
 import sqlite3 as sqlite
+import stage.mediatheque as media
 
 SQL_CREATE_EPISODES_TABLE = "CREATE TABLE IF NOT EXISTS episodes (number INT NOT NULL, season INT NOT NULL, title TEXT NOT NULL)"
 
@@ -49,3 +50,10 @@ class TvShowDao:
         cur = self._connect.cursor()
         cur.execute(SQL_ADD_EPISODE, (ep_number, season_number, title))
         self._connect.commit()
+
+    @property
+    def episodes(self):
+        cur = self._connect.cursor()
+        cur.execute(SQL_GET_ALL_EPISODES)
+        # return cur.fetchall()
+        return [media.Episode(title, number, season) for title, season, number in cur.fetchall()]

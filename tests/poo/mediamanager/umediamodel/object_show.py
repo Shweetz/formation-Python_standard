@@ -90,7 +90,7 @@ class SeasonEvolution(unittest.TestCase):
         self.assertTrue(hasattr(self.show.season(1), 'episodes'))
 
     def test_existing_season_has_one_element(self):
-        self.assertEqual(len(self.show.season(1).episodes), 1)
+        self.assertEqual(len(self.show.season(1)._episodes), 1)
 
     def test_successful_creation_of_second_season(self):
         self.show.add_episode('Stormborn', 1, 2)
@@ -99,8 +99,8 @@ class SeasonEvolution(unittest.TestCase):
     def test_new_season_has_two_elements(self):
         self.show.add_episode('Stormborn', 1, 2)
         self.show.add_episode('valar morghulis', 2, 2)
-        self.assertEqual(len(self.show.season(2).episodes), 2)
-        self.assertEqual(len(self.show.season(1).episodes), 1)
+        self.assertEqual(len(self.show.season(2)._episodes), 2)
+        self.assertEqual(len(self.show.season(1)._episodes), 1)
 
 
 if __name__ == '__main__':
